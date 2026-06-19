@@ -11,6 +11,7 @@ import Homepage from './pages/Hompage'
 import ProductDetail from './pages/ProductDetail'
 import NotFound from './pages/NotFound'
 import Wishlist from './pages/Wishlist'
+import Product from './pages/Product'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path='/' element={<Structure />}>
             <Route index element={<Navigate to='/Homepage' replace />} />
             <Route path='/Homepage' element={<Homepage />} />
+            <Route path='/Product' element={<Product />} />
             <Route path='/Wishlist' element={<Wishlist />} />
             <Route path='/ProductDetail' element={<ProductDetail />} />
             <Route path='/NotFound' element={<NotFound />} />

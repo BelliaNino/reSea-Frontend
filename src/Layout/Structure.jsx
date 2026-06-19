@@ -10,7 +10,7 @@ function Structure() {
                 <Link to="/Homepage">
                     <button>Home</button>
                 </Link>
-                <Link to="/ProductDetail">
+                <Link to="/Product">
                     <button>Prodotti</button>
                 </Link>
                 <Link to="/NotFound">
