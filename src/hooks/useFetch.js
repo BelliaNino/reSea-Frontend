@@ -10,7 +10,7 @@ function useFetch(endpoint) {
         async function fetchData() {
             try {
                 setLoading(true);
-                const result = await apiFetch(endpoint);
+                const result = await fetchApi(endpoint);
                 setData(result);
             } catch (error) {
                 setError(error.message);
