@@ -17,7 +17,61 @@
   min-height: 100vh;
 }
 
+.hero-banner1 {
+  width: 100%;
+  min-height: 700px;       
+  background-image: url('./assets/hero2.png');
+  background-size: cover;
+  background-position: top;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .container{
+  margin-right: 15rem;
+}
+}
+
+.hero-banner2 {
+  width: 100%;
+  min-height: 700px;    
+  background-image: url('./assets/herobanner.png');
+  background-size: cover;
+  background-position: 50% 70%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-banner3 {
+  width: 100%;
+  min-height: 900px;     
+  background-image: url('./assets/hero1.png');
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .container {
+    margin-left: 15rem;
+  }
+}
+
 /*==STILE NAVBAR==*/
+
+.navbar {
+  min-height: 120px;
+}
+
+.navbar-brand img {
+  width: 270px;
+  border-radius: 50px;
+}
+
 .nav-link-custom {
   text-decoration: none;
   font-size: 1rem;
@@ -25,17 +79,40 @@
   border-radius: 40px;
 }
 
+.logo-nav {
+  max-width: 180px;
+  height: auto;
+}
+
+.navbar-nav {
+  flex-direction: row !important;
+
+}
+
+@media (max-width: 991.98px) {
+
+  .navbar-collapse {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+  }
+
+}
+
 /*Bottoni Nav*/
 .nav-btn {
-  padding: 12px 28px;
+  display: inline-block;
+  text-decoration: none;
 
+  padding: 9px 16px;
   border: none;
   border-radius: 999px;
 
   background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: white;
-
-  font-size: 1rem;
+  color: white !important;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.5px;
 
@@ -49,6 +126,7 @@
 }
 
 .nav-btn:hover {
+  color: white !important;
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 8px 25px rgba(37, 117, 252, 0.5);
 }
@@ -62,18 +140,113 @@
   position: absolute;
   top: 0;
   left: -120%;
-
   width: 60%;
   height: 100%;
-
   background: linear-gradient(90deg,
       transparent,
       rgba(255, 255, 255, 0.4),
       transparent);
-
   transition: 0.6s;
 }
 
 .nav-btn:hover::before {
   left: 150%;
+}
+
+.hero-slider {
+  width: 100%;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(0, 33, 71, 0.55), rgba(0, 0, 0, 0.15));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  max-width: 620px;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  font-weight: 800;
+  margin-bottom: 0.8rem;
+}
+
+.hero-text {
+  font-size: 1.05rem;
+  margin-bottom: 1.2rem;
+}
+
+.hero-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 1.5rem;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.55rem;
+  z-index: 3;
+}
+
+.hero-dot {
+  width: 10px;
+  height: 10px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.hero-dot.active {
+  width: 24px;
+  background: #fff;
+}
+
+.section-title {
+  color: #0A2540;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+.product-carousel-viewport {
+  overflow: hidden;
+}
+
+.product-carousel-track {
+  display: flex;
+  transition: transform 0.35s ease;
+}
+
+.product-carousel-item {
+  padding: 0 8px;
+}
+
+.product-card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+}
+
+@media (max-width: 991.98px) {
+  .hero-slider {
+    min-height: 560px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .hero-slider {
+    min-height: 500px;
+  }
+
+  .hero-content {
+    text-align: center;
+    margin-inline: auto;
+  }
 }
