@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { createContext, useContext } from "react";
 
 const AppContext = createContext();
+const [search, setSearch] = useState("");
+
 
 function AppProvider({ children }) {
     return (
-        <AppContext.Provider value={{}}>
+        <AppContext.Provider value={{ search, setSearch }}>
             {children}
         </AppContext.Provider>
     );

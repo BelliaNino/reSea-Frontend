@@ -19,11 +19,11 @@
 
 /*==STILE NAVBAR==*/
 
-.navbar{
-  max-height: 120px;
+.navbar {
+  min-height: 120px;
 }
 
-.navbar-brand img{
+.navbar-brand img {
   width: 270px;
   border-radius: 50px;
 }
@@ -35,17 +35,39 @@
   border-radius: 40px;
 }
 
+.logo-nav {
+  max-width: 180px;
+  height: auto;
+}
+
+.navbar-nav {
+  flex-direction: row !important;
+
+}
+
+@media (max-width: 991.98px) {
+
+  .navbar-collapse {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+  }
+
+}
+
 /*Bottoni Nav*/
 .nav-btn {
-  display: inline-block;        
-  text-decoration: none;        
-  
-  padding: 10px 24px;
+  display: inline-block;
+  text-decoration: none;
+
+  padding: 9px 16px;
   border: none;
   border-radius: 999px;
 
   background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: white !important;      
+  color: white !important;
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -60,7 +82,7 @@
 }
 
 .nav-btn:hover {
-  color: white !important;      
+  color: white !important;
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 8px 25px rgba(37, 117, 252, 0.5);
 }
