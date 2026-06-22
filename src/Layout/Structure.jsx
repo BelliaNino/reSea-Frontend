@@ -6,17 +6,73 @@ import logo from '../assets/logoneutro.png'
 function Structure() {
   return (
     <>
-      <nav className="bg-secondary" style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
-        <Link to="/homepage" className="nav-link-custom">
-          <button className="nav-btn">Home</button>
-        </Link>
-        <Link to="/products" className="nav-link-custom">
-          <button className="nav-btn">Prodotti</button>
-        </Link>
-        <Link to="/NotFound" className="nav-link-custom">
-          <button className="nav-btn">About</button>
-        </Link>
-      </nav>
+      <header>
+                <nav className="navbar navbar-expand-md navbar-dark bg-secondary px-4">
+
+                    <Link className="navbar-brand" to="/homepage">
+                        <img src={logo} alt="Logo"/>
+                    </Link>
+
+                    <button
+                        className="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navMenu"
+                        aria-controls="navMenu"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span className="navbar-toggler-icon" />
+                    </button>
+
+                    <div className="collapse navbar-collapse" id="navMenu">
+                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex flex-column flex-md-row align-items-start align-items-md-center gap-3">
+                            <li className="nav-item">
+                                <Link to="/homepage" className="nav-btn btn-sm btn-light text-dark">Home</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/products" className="nav-btn btn-sm btn-light text-dark">Prodotti</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/about" className="nav-btn btn-sm btn-light text-dark">About</Link>
+                            </li>
+
+                            {/* WISHLIST - agganciare wishlistItems dal context quando pronto */}
+                            <li className="nav-item">
+                                <Link to="/wishlist" className="nav-btn btn-sm btn-light text-dark position-relative">
+                                    <i className="bi bi-heart-fill"></i>
+                                    {/* {wishlistItems.length > 0 && (
+                                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                  {wishlistItems.length}
+                                    </span>
+                                      )} */}
+                                </Link>
+                            </li>
+
+                            {/* SEARCH BAR - agganciare navSearch e handleNavbarSearch quando pronto */}
+                            <li className="nav-item d-flex gap-2">
+                                <input
+                                    className="form-control form-control-sm border-0 text-dark rounded-pill"
+                                    type="search"
+                                    placeholder="Cerca..."
+                                    style={{ width: '200px' }}
+                                // value={navSearch}
+                                // onChange={e => setNavSearch(e.target.value)}
+                                // onKeyDown={e => e.key === 'Enter' && handleNavbarSearch()}
+                                />
+                                <button
+                                    className="nav-btn btn-sm btn-light text-dark fw-bold"
+                                // onClick={handleNavbarSearch}
+                                >
+                                    Cerca
+                                </button>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </nav>
+            </header>
 
       <main className="appbg">
         <Outlet />

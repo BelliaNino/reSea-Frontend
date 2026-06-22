@@ -28,6 +28,7 @@ function App() {
               <Route index element={<Navigate to='/homepage' replace />} />
               <Route path='/homepage' element={<Homepage />} />
               <Route path='/products' element={<Product />} />
+              <Route path='/wishlist' element={<Wishlist />} />
               <Route path='/products/:slug' element={<ProductDetail />} />
               <Route path="*" element={<NotFound />} />
             </Route>
