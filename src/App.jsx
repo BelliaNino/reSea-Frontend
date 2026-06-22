@@ -13,7 +13,7 @@ import NotFound from './pages/NotFound'
 import Wishlist from './pages/Wishlist'
 import Product from './pages/Product'
 
-import { AppProvider } from './Context/AppContext.jsx'
+import { CategoriesProvider } from './Context/CategoriesContext'
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
 
   return (
     <>
-      <AppProvider>
+      <CategoriesProvider>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Structure />}>
@@ -33,7 +33,7 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
-      </AppProvider>
+      </CategoriesProvider>
     </>
   )
 }
