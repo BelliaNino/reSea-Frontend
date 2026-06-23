@@ -106,7 +106,7 @@ function ProductCarouselSection({ title, products, loading, error }) {
                                     />
                                     <div className="card-body">
                                         <h6 className="card-title">{item.name}</h6>
-                                        <p className="card-text fw-bold mb-0">EUR {Number(item.price).toFixed(2)}</p>
+                                        <p className="card-text fw-bold mb-0">€ {Number(item.price).toFixed(2)}</p>
                                     </div>
                                 </div>
                             </Link>
