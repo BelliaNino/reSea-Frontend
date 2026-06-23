@@ -94,8 +94,8 @@ function CheckoutPage() {
                             <h5 className="text-success mt-2 mb-2">Un acquisto con un impatto reale</h5>
                             <p className="mb-0 text-muted">
                                 Grazie per aver scelto di proteggere i nostri oceani. Con questo ordine,
-                                hai dato nuova vita a
-                                <strong>{orderDetails?.total_plastic} kg di plastica</strong> che
+                                hai dato nuova vita
+                                a <strong>{orderDetails?.total_plastic} kg di plastica</strong> che
                                 non inquineranno più il mare.
                             </p>
                         </div>
