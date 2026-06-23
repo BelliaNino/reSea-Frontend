@@ -1,8 +1,8 @@
 const BASE_URL = 'http://localhost:3000';
 
-async function fetchApi(endpoint) {
+async function fetchApi(endpoint, options = {}) {
 
-    const response = await fetch(`${BASE_URL}${endpoint}`);
+    const response = await fetch(`${BASE_URL}${endpoint}`, options);
 
     if (!response.ok) {
 
