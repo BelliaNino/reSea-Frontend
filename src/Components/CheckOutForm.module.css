@@ -1,0 +1,13 @@
+.input {
+    border: 1px solid #001f3f !important;
+}
+
+.coralButton {
+    background-color: #FF7F7F !important;
+    color: #001f3f !important;
+    border: none !important;
+}
+
+.coralButton:hover {
+    background-color: #ff6b6b !important;
+}
