@@ -14,6 +14,7 @@ import Wishlist from './pages/Wishlist'
 import Product from './pages/Product'
 import { CategoriesProvider } from './Context/CategoriesContext.jsx'
 import ScrollToTop from './Components/ScrollToTop.jsx'
+import CheckoutPage from './pages/CheckOutPage.jsx'
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
               <Route path='/homepage' element={<Homepage />} />
               <Route path='/products' element={<Product />} />
               <Route path='/products/:slug' element={<ProductDetails />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
