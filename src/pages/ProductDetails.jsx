@@ -24,10 +24,9 @@ function ProductDetails() {
 
     if (error) {
         return (
-            <div className="container py-5 text-center">
-                <div className="alert alert-danger">
-                    Si è verificato un errore: {error}
-                </div>
+            <div>
+                <h1>Siamo spiacenti!</h1>
+                <p>Non abbiamo trovato alcun prodotto associato al nome: <strong>{slug}</strong></p>
             </div>
         );
     }
@@ -53,6 +52,12 @@ function ProductDetails() {
                 <div className="col-md-6">
                     <h1 className="fw-bold mb-3">{product.name}</h1>
                     <h3 className="text-primary mb-4">€{Number(product.price).toFixed(2)}</h3>
+
+                    <div className="alert alert-success p-2 mb-4 d-inline-block">
+                        <i className="bi bi-recycle me-2"></i>
+                        Acquistando questo prodotto compensi ad eliminare <strong>{product.plastic_offset_kg} kg</strong> di plastica!
+                    </div>
+
                     {/* 'Lead': serve a risaltare un paragrafo specifico all'interno di una pagina.*/}
                     <p className="lead mb-4">{product.description}</p>
 
