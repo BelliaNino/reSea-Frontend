@@ -27,7 +27,7 @@ function useFetch(endpoint) {
 
                 if (cancelled) return;
 
-                setData(Array.isArray(result?.data) ? result.data : []);
+                setData(result?.data || []);
                 setPagination(result?.pagination || null);
             } catch (err) {
                 if (cancelled) return;
