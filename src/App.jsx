@@ -12,7 +12,7 @@ import ProductDetails from './pages/ProductDetails.jsx'
 import NotFound from './pages/NotFound'
 import Wishlist from './pages/Wishlist'
 import Product from './pages/Product'
-import Cart from './pages/Cart.jsx'
+import CartPage from './pages/CartPage.jsx'
 import CheckOutPage from './pages/CheckOutPage.jsx'
 import { CategoriesProvider } from './Context/CategoriesContext.jsx'
 import ScrollToTop from './Components/ScrollToTop.jsx'
@@ -36,6 +36,8 @@ function App() {
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/checkout' element={<CheckOutPage />} />
                 <Route path='/products/:slug' element={<ProductDetails />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path='/cartpage' element={<CartPage />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>
