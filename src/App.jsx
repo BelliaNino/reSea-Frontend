@@ -12,6 +12,8 @@ import ProductDetails from './pages/ProductDetails.jsx'
 import NotFound from './pages/NotFound'
 import Wishlist from './pages/Wishlist'
 import Product from './pages/Product'
+import Cart from './pages/Cart.jsx'
+import CheckOutPage from './pages/CheckOutPage.jsx'
 import { CategoriesProvider } from './Context/CategoriesContext.jsx'
 import ScrollToTop from './Components/ScrollToTop.jsx'
 import CheckoutPage from './pages/CheckOutPage.jsx'
@@ -31,8 +33,9 @@ function App() {
                 <Route index element={<Navigate to='/homepage' replace />} />
                 <Route path='/homepage' element={<Homepage />} />
                 <Route path='/products' element={<Product />} />
+                <Route path='/cart' element={<Cart />} />
+                <Route path='/checkout' element={<CheckOutPage />} />
                 <Route path='/products/:slug' element={<ProductDetails />} />
-                <Route path="/checkout" element={<CheckoutPage />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>
