@@ -5,7 +5,7 @@ function useCheckout() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    async function processOrder(orderData, cartItems) {
+    async function processOrder(overPayLoad) {
         setLoading(true);
         setError(null);
 
@@ -13,7 +13,7 @@ function useCheckout() {
             const data = await fetchApi('/orders', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...orderData, items: cartItems })
+                body: JSON.stringify(overPayLoad)
             });
 
             return data;
@@ -28,4 +28,6 @@ function useCheckout() {
     return { processOrder, loading, error };
 }
 
+
 export default useCheckout;
+
