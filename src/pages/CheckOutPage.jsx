@@ -155,6 +155,7 @@ function CheckoutPage() {
                                 onBack={() => setStep('shipping')}
                                 shippingData={shippingData}
                                 onComplete={(data) => handleFinalOrder(data, cartItems)}
+                                isSubmitting={isSubmitting}
                             />
                         )}
                     </div>
