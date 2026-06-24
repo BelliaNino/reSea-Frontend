@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import useCheckout from '../hooks/useCeckout.js';
 import styles from './CheckoutForm.module.css';
 
 function CheckoutForm({ onNext }) {
@@ -10,6 +9,11 @@ function CheckoutForm({ onNext }) {
         billing_address: '',
         phone_number: ''
     });
+
+    if (formData.phone_number.length < 9) {
+        alert("Per favore, inserisci un numero di telefono valido.");
+        return;
+    }
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -22,6 +26,12 @@ function CheckoutForm({ onNext }) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        if (formData.phone_number.length < 9) {
+            alert("Per favore, inserisci un numero di telefono valido.");
+            return;
+        }
+
         onNext(formData);
     };
 
@@ -79,7 +89,6 @@ function CheckoutForm({ onNext }) {
                 Continua
             </button>
 
-            {error && <p className="text-danger mt-3">Errore: {error}</p>}
         </form>
     );
 }
