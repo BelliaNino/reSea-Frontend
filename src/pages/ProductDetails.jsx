@@ -10,9 +10,6 @@ function ProductDetails() {
     const loading = risultato.loading;
     const error = risultato.error;
 
-    console.log(risultato);
-
-
     if (loading) {
         return (
             <div className="container py-5 text-center">
@@ -51,7 +48,7 @@ function ProductDetails() {
         localStorage.setItem('cart', JSON.stringify(currentCart));
 
         alert(`${product.name} aggiunto al carrello!`);
-    }; 
+    };
 
     return (
         <div className="container py-5">
