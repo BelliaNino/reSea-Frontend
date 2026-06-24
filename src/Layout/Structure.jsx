@@ -52,7 +52,7 @@ function Structure() {
                 {wishlistItems.length}
                       </span>)} */}
               </Link>
-              <Link to="/cartpage" className="nav-btn btn-sm btn-light text-dark fw-bold">
+              <Link to="/cart" className="nav-btn btn-sm btn-light text-dark fw-bold">
                 <i className="bi bi-cart-fill"></i>
               </Link>
             </div>
