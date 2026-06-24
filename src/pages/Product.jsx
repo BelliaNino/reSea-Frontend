@@ -111,6 +111,9 @@ function Product() {
                         </div>
                     ) : (
                         <>
+                        <div className="d-flex text-secondary justify-content-end">
+                            <p>Prodotti trovati: {products.length}</p>
+                        </div>
                             <div className="d-flex flex-wrap gap-3 justify-content-center">
                                 {products.map((item) => (
                                     <Link
