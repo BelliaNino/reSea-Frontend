@@ -10,11 +10,6 @@ function CheckoutForm({ onNext }) {
         phone_number: ''
     });
 
-    if (formData.phone_number.length < 9) {
-        alert("Per favore, inserisci un numero di telefono valido.");
-        return;
-    }
-
     const handleChange = (event) => {
         const { name, value } = event.target;
 
