@@ -11,10 +11,13 @@ function CheckoutForm({ onNext }) {
         phone_number: ''
     });
 
-    const { processOrder, loading, error } = useCheckout();
-
     const handleChange = (event) => {
-        setFormData({ ...formData, [event.target.name]: event.target.value });
+        const { name, value } = event.target;
+
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
     };
 
     const handleSubmit = (event) => {
@@ -72,8 +75,8 @@ function CheckoutForm({ onNext }) {
                     required />
             </div>
 
-            <button className={`${styles.coralButton} btn btn-lg w-100`} type="submit" disabled={loading}>
-                {loading ? "Invio in corso..." : "Continua"}
+            <button className={`${styles.coralButton} btn btn-lg w-100`} type="submit">
+                Continua
             </button>
 
             {error && <p className="text-danger mt-3">Errore: {error}</p>}
