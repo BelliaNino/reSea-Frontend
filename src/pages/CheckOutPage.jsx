@@ -5,6 +5,7 @@ import PaymentForm from '../Components/PaymentForm.jsx';
 import styles from './CheckoutPage.module.css';
 import useCheckout from '../hooks/useCeckout.js';
 import { priceFormatter } from '../services/reseaServices.js';
+import { useAppContext } from '../Context/AppContext.jsx';
 
 function CheckoutPage() {
     const [step, setStep] = useState('shipping');
@@ -13,6 +14,7 @@ function CheckoutPage() {
     const { processOrder } = useCheckout();
     const [isOrderPlaced, setIsOrderPlaced] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const { cart, removePurchasedProducts } = useAppContext();
 
     const handleShippingSubmit = (data) => {
         setShippingData(data);
@@ -45,6 +47,7 @@ function CheckoutPage() {
             if (response && response.data) {
                 setOrderDetail(response.data);
                 setIsOrderPlaced(true);
+                removePurchasedProducts();
             } else {
                 throw new Error("Risposta non valida dal server");
             }
@@ -55,12 +58,7 @@ function CheckoutPage() {
         }
     };
 
-    const mockCart = [
-        { id: 1, name: 'Abisso Rigenerato', price: 99.99, quantity: 2 },
-        { id: 2, name: 'Poseidon Wave', price: 129.90, quantity: 1 }
-    ];
-
-    const cartItems = mockCart;
+    const cartItems = cart;
 
     if (cartItems.length === 0) {
         return (
