@@ -109,39 +109,39 @@ function Product() {
                             <i className="bi bi-sunglasses text-warning" style={{ fontSize: '4rem' }}></i>
                             <h4 className="mt-3 text-dark">Nessun prodotto trovato</h4>
                         </div>
+                       ) : ( 
+                         <>
+                        <div className="d-flex flex-wrap gap-3 justify-content-center">
+                            {products.map((item) => (
+                                <Link
+                                    to={"/products/" + item.slug}
+                                    className="text-decoration-none text-dark d-inline-block"
+                                    key={item.id}
+                                >
+                                    <div className="card card-product" style={{ cursor: "pointer", width: "18rem" }}>
+                                        <img
+                                            src={item.image}
+                                            className="card-img-top"
+                                            alt={item.name}
+                                            loading="lazy"
+                                            decoding="async"
+                                        />
+                                        <div className="card-body p-2">
+                                            <h6 className="card-title fw-bold mt-3 mb-2">{item.name}</h6>
+                                            <div className="d-flex justify-content-between align-items-center">
+                                                <p className="card-text fw-bold mb-0 small">
+                                                    €{Number(item.price).toFixed(2)}
+                                                </p>
+                                                <div>
 
-                    ) : (
-                        <>
-                            <div className="d-flex justify-content-between align-items-center mb-3">
-                                <small className="text-muted ms-auto">Totale prodotti: {total}</small>
-                                {isFetching && <small className="text-muted">Aggiornamento risultati...</small>}
-                            </div>
+                                                <button type="button btn-cartwish" className="btn btn-black-50 rounded-circle">
+                                                    <i className="bi {liked ? bi-heart : bi-heart-fill } text-dark"></i>
+                                                </button>
 
-                            <div className="d-flex flex-wrap gap-3 justify-content-center">
-                                {products.map((item) => (
-                                    <Link
-                                        to={"/products/" + item.slug}
-                                        className="text-decoration-none text-dark d-inline-block"
-                                        key={item.id}
-                                    >
-                                        <div className="card" style={{ cursor: "pointer", width: "18rem" }}>
-                                            <img
-                                                src={item.image}
-                                                className="card-img-top"
-                                                style={{ height: "250px", objectFit: "contain" }}
-                                                alt={item.name}
-                                                loading="lazy"
-                                                decoding="async"
-                                            />
-                                            <div className="card-body p-2">
-                                                <h6 className="card-title mb-1">{item.name}</h6>
-                                                <div className="d-flex justify-content-between align-items-center">
-                                                    <p className="card-text fw-bold mb-0 small">
-                                                        {priceFormatter(item.price)}
-                                                    </p>
-                                                    <button type="button" className="btn btn-black-50 rounded-circle">
-                                                        <i className="bi bi-heart-fill text-danger"></i>
-                                                    </button>
+                                                <button type="button btn-cartwish" className="btn btn-black-50 rounded-circle">
+                                                    <i className="bi {carted ? bi-cart : bi-cart-fill } text-dark"></i>
+                                                </button>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -149,33 +149,32 @@ function Product() {
                                 ))}
                             </div>
 
-                            {/* paginazione */}
-                            <div className="d-flex flex-column align-items-center gap-2 mt-4">
-                                <nav>
-                                    <ul className="pagination mb-0">
-                                        <li className={"page-item" + (page <= 1 ? " disabled" : "")}>
-                                            <button className="page-link" onClick={() => goToPage(page - 1)} type="button">
-                                                Precedente
+                        {/* paginazione */}
+                        <div className="d-flex flex-column align-items-center gap-2 mt-4">
+                            <nav>
+                                <ul className="pagination mb-0">
+                                    <li className={"page-item" + (page <= 1 ? " disabled" : "")}>
+                                        <button className="page-link text-dark" onClick={() => goToPage(page - 1)} type="button">
+                                            Precedente
+                                        </button>
+                                    </li>
+                                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                                        <li key={p} className={"page-item" + (p === page ? " active" : "")}>
+                                            <button className="page-link text-dark" onClick={() => goToPage(p)} type="button">
+                                                {p}
                                             </button>
                                         </li>
-                                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-                                            <li key={p} className={"page-item" + (p === page ? " active" : "")}>
-                                                <button className="page-link" onClick={() => goToPage(p)} type="button">
-                                                    {p}
-                                                </button>
-                                            </li>
-                                        ))}
-                                        <li className={"page-item" + (page >= totalPages ? " disabled" : "")}>
-                                            <button className="page-link" onClick={() => goToPage(page + 1)} type="button">
-                                                Successiva
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </nav>
-                                <small className="text-muted">Pagina {page} di {totalPages}</small>
-                            </div>
-                        </>)}
-                </div>
+                                    ))}
+                                    <li className={"page-item" + (page >= totalPages ? " disabled" : "")}>
+                                        <button className="page-link text-dark" onClick={() => goToPage(page + 1)} type="button">
+                                            Successiva
+                                        </button>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <small className="text-muted">Pagina {page} di {totalPages}</small>
+                        </div>
+                    </>)}
             </div>
         </div >
     );

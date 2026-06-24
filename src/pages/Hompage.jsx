@@ -98,12 +98,12 @@ function ProductCarouselSection({ title, products, loading, error }) {
                             style={{ flex: `0 0 calc(100% / ${cardsPerView})` }}
                         >
                             <Link to={"/products/" + item.slug} className="text-decoration-none text-dark">
-                                <div className="card product-card h-100">
+                                <div className="card home-card h-100">
                                     <img
                                         src={item.image}
                                         className="card-img-top"
                                         alt={item.name}
-                                        style={{ height: "240px", objectFit: "contain" }}
+                                    
                                     />
                                     <div className="card-body">
                                         <h6 className="card-title">{item.name}</h6>
