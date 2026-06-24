@@ -15,30 +15,38 @@ function Cart() {
 
     return (
         <>
-            <div className="container">
-                <div className="min-vh-100 d-flex align-items-center justify-content-center p-4 cart-bg">
-                    <div style={{ width: "100%", maxWidth: "860px" }}>
+            {cart.length === 0 ? (
 
-                        {/* header */}
-                        <div className="d-flex justify-content-between align-items-baseline mb-3">
-                            <h2 className="fw-bold fs-4 m-0">Il tuo carrello:</h2>
-                            <span className="fw-semibold fs-5 text-primary">
-                                Totale: € {totale.toFixed(2)}
-                            </span>
+                <div className="d-flex flex-column align-items-center justify-content-center py-5">
+                    <i className="bi bi-cart text-warning" style={{ fontSize: '4rem' }}></i>
+                    <h4 className="mt-3 text-dark">Il tuo carrello è attualmente vuoto</h4>
+                </div>
+            ) : (
+
+                <div className="container">
+                    <div className="min-vh-100 d-flex align-items-center justify-content-center p-4 cart-bg">
+                        <div style={{ width: "100%", maxWidth: "860px" }}>
+
+                            {/* header */}
+                            <div className="d-flex justify-content-between align-items-baseline mb-3">
+                                <h2 className="fw-bold fs-4 m-0">Il tuo carrello:</h2>
+                                <span className="fw-semibold fs-5 text-primary">
+                                    Totale: € {totale.toFixed(2)}
+                                </span>
+                            </div>
+                            {/* Lista prodotti nel carrello */}
+                            <CartList />
+
                         </div>
-                        {/* Lista prodotti nel carrello */}
-                        <CartList />
-
+                    </div>
+                    <div className="w-100 d-flex align-items-center">
+                        <Link to="/checkout" className="btn btn-primary btn-md mt-2 mb-3 mx-auto">
+                            Procedi al pagamento
+                        </Link>
                     </div>
                 </div>
-                <div className="w-100 d-flex align-items-center">
-                    <Link to="/checkout" className="btn btn-primary btn-md mt-2 mb-3 mx-auto">
-                        Procedi al pagamento
-                    </Link>
-                </div>
-            </div>
 
-        </>
+            )}</>
     )
 }
 
