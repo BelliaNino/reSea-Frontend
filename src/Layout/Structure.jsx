@@ -9,7 +9,7 @@ function Structure() {
   return (
     <>
       <header>
-        <nav className="navbar navbar-expand-lg navbar-dark px-4">
+        <nav className="navbar navbar-expand-lg navbar-white px-4">
 
           <Link className="navbar-brand" to="/homepage">
             <img className="logo-nav" src={logo} alt="Logo" />
@@ -44,7 +44,7 @@ function Structure() {
 
 
             {/* WISHLIST - agganciare wishlistItems dal context quando pronto */}
-            <div className="nav-item">
+            <div className="nav-item d-flex gap-3">
               <Link to="/wishlist" className="nav-btn btn-sm btn-light text-dark position-relative">
                 <i className="bi bi-heart-fill"></i>
                 {/* {wishlistItems.length > 0 && (
@@ -52,9 +52,44 @@ function Structure() {
                 {wishlistItems.length}
                       </span>)} */}
               </Link>
-              <Link to="/cartpage" className="nav-btn btn-sm btn-light text-dark fw-bold">
-                <i className="bi bi-cart-fill"></i>
-              </Link>
+              {/* btn cart-list */}
+              <div className="dropdown">
+                <button
+                  className="nav-btn btn-sm dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i className="bi bi-cart-fill"></i>
+                </button>
+
+                <ul className="dropdown-menu dropdown-menu-end p-3" style={{ minWidth: "280px" }}>
+
+                  {/* lista prodotti */}
+                  <li className="dropdown-item-text text-muted small mb-2">Il tuo carrello</li>
+
+                  {/* placeholder per i prodotti */}
+                  <li className="dropdown-item-text">
+                    <div className="d-flex align-items-center gap-2 py-1">
+                      <img src="" alt="" style={{ width: "40px", height: "40px", objectFit: "cover" }} />
+                      <div>
+                        <p className="mb-0 small fw-bold">Nome prodotto</p>
+                        <p className="mb-0 small text-muted">€ 00.00</p>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li><hr className="dropdown-divider" /></li>
+
+                  {/* btn pagina carrello */}
+                  <li>
+                    <Link to="/cartpage" className="btn btn-primary w-100 btn-sm">
+                      Vai al carrello
+                    </Link>
+                  </li>
+
+                </ul>
+              </div>
             </div>
           </div>
         </nav>

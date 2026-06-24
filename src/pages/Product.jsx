@@ -123,24 +123,31 @@ function Product() {
                                     className="text-decoration-none text-dark d-inline-block"
                                     key={item.id}
                                 >
-                                    <div className="card" style={{ cursor: "pointer", width: "18rem" }}>
+                                    <div className="card card-product" style={{ cursor: "pointer", width: "18rem" }}>
                                         <img
                                             src={item.image}
                                             className="card-img-top"
-                                            style={{ height: "250px", objectFit: "contain" }}
                                             alt={item.name}
                                             loading="lazy"
                                             decoding="async"
                                         />
                                         <div className="card-body p-2">
-                                            <h6 className="card-title mb-1">{item.name}</h6>
+                                            <h6 className="card-title fw-bold mt-3 mb-2">{item.name}</h6>
                                             <div className="d-flex justify-content-between align-items-center">
                                                 <p className="card-text fw-bold mb-0 small">
                                                     €{Number(item.price).toFixed(2)}
                                                 </p>
-                                                <button type="button" className="btn btn-black-50 rounded-circle">
-                                                    <i className="bi bi-heart-fill text-danger"></i>
+                                                <div>
+
+                                                <button type="button btn-cartwish" className="btn btn-black-50 rounded-circle">
+                                                    <i className="bi {liked ? bi-heart : bi-heart-fill } text-dark"></i>
                                                 </button>
+
+                                                <button type="button btn-cartwish" className="btn btn-black-50 rounded-circle">
+                                                    <i className="bi {carted ? bi-cart : bi-cart-fill } text-dark"></i>
+                                                </button>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -153,19 +160,19 @@ function Product() {
                             <nav>
                                 <ul className="pagination mb-0">
                                     <li className={"page-item" + (page <= 1 ? " disabled" : "")}>
-                                        <button className="page-link" onClick={() => goToPage(page - 1)} type="button">
+                                        <button className="page-link text-dark" onClick={() => goToPage(page - 1)} type="button">
                                             Precedente
                                         </button>
                                     </li>
                                     {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
                                         <li key={p} className={"page-item" + (p === page ? " active" : "")}>
-                                            <button className="page-link" onClick={() => goToPage(p)} type="button">
+                                            <button className="page-link text-dark" onClick={() => goToPage(p)} type="button">
                                                 {p}
                                             </button>
                                         </li>
                                     ))}
                                     <li className={"page-item" + (page >= totalPages ? " disabled" : "")}>
-                                        <button className="page-link" onClick={() => goToPage(page + 1)} type="button">
+                                        <button className="page-link text-dark" onClick={() => goToPage(page + 1)} type="button">
                                             Successiva
                                         </button>
                                     </li>
