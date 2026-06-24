@@ -5,6 +5,7 @@ import logo from '../assets/logoneutro.png'
 
 function Structure() {
 
+  const { cart } = useAppContext();
 
   return (
     <>
@@ -70,15 +71,24 @@ function Structure() {
                   <li className="dropdown-item-text text-muted small mb-2">Il tuo carrello</li>
 
                   {/* placeholder per i prodotti */}
-                  <li className="dropdown-item-text">
-                    <div className="d-flex align-items-center gap-2 py-1">
-                      <img src="" alt="" style={{ width: "40px", height: "40px", objectFit: "cover" }} />
-                      <div>
-                        <p className="mb-0 small fw-bold">Nome prodotto</p>
-                        <p className="mb-0 small text-muted">€ 00.00</p>
-                      </div>
-                    </div>
-                  </li>
+                  {cart.length > 0 ? (
+                    cart.map((product) => (
+                      <li key={product.id} className="dropdown-item-text">
+                        <div className="d-flex align-items-center gap-2 py-1">
+                          <img src={product.image} alt={product.name} style={{ width: "40px", height: "40px", objectFit: "cover" }} />
+                          <div style={{ flexGrow: 1 }}>
+                            <p className="mb-0 small fw-bold">{product.name}</p>
+                            <p className="mb-0 small text-muted">€ {Number(product.price).toFixed(2)}</p>
+                          </div>
+                          <button className="btn btn-light rounded-3 p-2">
+                            <i className="bi bi-trash text-secondary"></i>
+                          </button>
+                        </div>
+                      </li>
+                    ))
+                  ) : (
+                    <li className="dropdown-item-text text-muted small">Carrello vuoto</li>
+                  )}
 
                   <li><hr className="dropdown-divider" /></li>
 
