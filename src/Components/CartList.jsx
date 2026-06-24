@@ -18,8 +18,6 @@ function CartList() {
 
                     {/* info */}
                     <div className="flex-grow-1">
-                        <h5 className="fw-bold mb-1">{item.name}</h5>
-                        <p className="text-muted small mb-2">{item.description}</p>
 
                         <div className="d-flex flex-column gap-1 mb-3">
                             <div className="d-flex align-items-center gap-2">
