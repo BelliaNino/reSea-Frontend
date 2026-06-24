@@ -3,7 +3,16 @@ import { useState, createContext, useContext, useEffect } from "react";
 const AppContext = createContext();
 
 function AppProvider({ children }) {
-  
+
+    const cartData = localStorage.getItem('cart');
+
+    let initialCart;
+    if (cartData) {
+        initialCart = JSON.parse(cartData);
+    } else {
+        initialCart = [];
+    }
+
     const [search, setSearch] = useState("");
     const [wishlist, setWishlist] = useState([]);
     const [cart, setCart] = useState(initialCart);
@@ -21,14 +30,6 @@ function AppProvider({ children }) {
         );
     };
 
-    const cartData = localStorage.getItem('cart');
-
-    let initialCart;
-    if (cartData) {
-        initialCart = JSON.parse(cartData);
-    } else {
-        initialCart = [];
-    }
 
     const addHandler = (productToAdd) => {
         const newProduct = {
@@ -86,9 +87,9 @@ function AppProvider({ children }) {
     return (
         <AppContext.Provider value={{
             cart,
-            search, 
+            search,
             setSearch,
-            wishlist, 
+            wishlist,
             toggleWishlist,
             toggleCart,
             addHandler,
