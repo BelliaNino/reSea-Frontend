@@ -4,8 +4,8 @@ import { useAppContext } from "../Context/AppContext";
 import logo from '../assets/logoneutro.png'
 
 function Structure() {
+  const { cart, totalQuantity, removeHandler, wishlist } = useAppContext();
 
-  const { cart, removeHandler, wishlist } = useAppContext();
 
   return (
     <>
@@ -54,8 +54,7 @@ function Structure() {
                 <i className="bi bi-heart-fill ms-1"></i>
               </Link>
 
-              {/* btn cart-list */}
-              <div className="dropdown">
+              <div className="dropdown position-relative d-inline-block">
 
                 <button
                   className="nav-btn btn-sm dropdown-toggle"
@@ -71,6 +70,12 @@ function Structure() {
                   <i className="bi bi-cart-fill ms-1"></i>
                 </button>
 
+                {totalQuantity > 0 && (
+                  <span className="badge rounded-pill bg-danger cart-badge">
+                    {totalQuantity}
+                  </span>
+                )}
+                
                 <ul className="dropdown-menu dropdown-menu-end p-3 mt-3" style={{ minWidth: "280px" }}>
 
                   {/* lista prodotti */}
@@ -83,12 +88,20 @@ function Structure() {
                         <div className="d-flex align-items-center gap-2 py-1">
                           <img src={product.image} alt={product.name} style={{ width: "40px", height: "40px", objectFit: "cover" }} />
                           <div style={{ flexGrow: 1 }}>
-                            <p className="mb-0 small fw-bold">{product.name}</p>
+                            <p className="mb-0 small fw-bold">
+                              {product.name}
+                              {product.quantity > 1 && <span className="text-muted ms-1">x{product.quantity}</span>}
+                            </p>
                             <p className="mb-0 small text-muted">€ {Number(product.price).toFixed(2)}</p>
                           </div>
 
-                          <button className="btn btn-light rounded-3 p-2"
-                            onClick={() => removeHandler(product.id)}>
+                          <button
+                            className="btn btn-light rounded-3 p-2"
+                            onClick={(event) => {
+                              event.stopPropagation();
+                              removeHandler(product.id);
+                            }}>
+                              
                             <i className="bi bi-trash text-secondary"></i>
                           </button>
 
@@ -112,7 +125,7 @@ function Structure() {
             </div>
           </div>
         </nav>
-      </header>
+      </header >
 
       <main className="appbg">
         <Outlet />
