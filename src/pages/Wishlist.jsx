@@ -9,7 +9,7 @@ function Wishlist(){
         {wishlist.length === 0 ? (
                 <div className="d-flex flex-column align-items-center justify-content-center py-5">
                     <i className="bi bi-heart text-warning" style={{ fontSize: '4rem' }}></i>
-                    <h4 className="mt-3 text-dark">Il tuo carrello è attualmente vuoto</h4>
+                    <h4 className="mt-3 text-dark">La tua lista dei desideri è attualmente vuota</h4>
                 </div>
             ) : (
         <div className="container">

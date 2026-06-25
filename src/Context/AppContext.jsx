@@ -25,12 +25,13 @@ function AppProvider({ children }) {
     };
 
     const addToWishlist = (product) => {
-    setWishlist(prev =>
-        prev.some(p => p.id === product.id)
-            ? prev.filter(p => p.id !== product.id)
-            : [...prev, product]
-    );
-};
+        setWishlist(prev =>
+            prev.some(p => p.id === product.id)
+                ? prev.filter(p => p.id !== product.id)
+                : [...prev, product]
+        );
+    };
+
 
     const toggleCart = (id) => {
         setCart(prev =>
