@@ -71,7 +71,7 @@ function Structure() {
                   <i className="bi bi-cart-fill ms-1"></i>
                 </button>
 
-                <ul className="dropdown-menu dropdown-menu-end p-3" style={{ minWidth: "280px" }}>
+                <ul className="dropdown-menu dropdown-menu-end p-3 mt-3" style={{ minWidth: "280px" }}>
 
                   {/* lista prodotti */}
                   <li className="dropdown-item-text text-muted small mb-2">Il tuo carrello</li>
