@@ -116,17 +116,6 @@ footer {
 
 }
 
-@media (max-width: 991.98px) {
-
-  .navbar-collapse {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-
-  }
-
-}
 
 /*Bottoni Nav*/
 .nav-btn {
@@ -371,6 +360,18 @@ footer {
 }
 
 @media (max-width: 991.98px) {
+
+  .navbar-collapse {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+  }
+
+}
+
+@media (max-width: 991.98px) {
   .hero-slider {
     min-height: 560px;
   }
@@ -382,7 +383,7 @@ footer {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1000px) {
   .hero-content {
     width: 100% !important;
     max-width: 100% !important;
@@ -393,5 +394,28 @@ footer {
     flex-direction: column !important;
     align-items: center !important;
     padding: 0 20px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .offcanvas {
+    width: 90% !important;
+    max-width: 400px !important;
+    border-radius: 0 15px 15px 0;
+  }
+
+  .offcanvas-backdrop.show {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(4px);
+  }
+}
+
+@media (min-width: 992px) {
+  .offcanvas-backdrop {
+    display: none !important;
+  }
+
+  body {
+    overflow: auto !important;
   }
 }
