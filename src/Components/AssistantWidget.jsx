@@ -8,10 +8,16 @@ function AssistantWidget() {
     const [messages, setMessages] = useState([
         {
             role: "assistant",
-            html: "<p>Ciao! Sono l'assistente di reSea. Posso supportarti sui prodotti.<p>"
+            html: "<p>Ciao! Sono GretAI Thun. Posso supportarti sui prodotti.</p>"
         }
     ]);
     const [error, setError] = useState("");
+
+    const buttonLabel = loading
+        ? "Sto cercando..."
+        : isOpen
+            ? "chiudi chat"
+            : "GretAI Thun";
 
     async function handleSend(event) {
         event.preventDefault();
@@ -31,7 +37,7 @@ function AssistantWidget() {
         try {
             const result = await postAgentPrompt(cleanPrompt);
             const answerHtml =
-                result?.data?.answerHtml || "<p>Non ho trovato una risposta utile.<p>";
+                result?.data?.answerHtml || "<p>Non ho trovato una risposta utile.</p>";
 
             setMessages((prev) => [...prev, { role: "assistant", html: answerHtml }]);
         } catch (error) {
@@ -41,53 +47,56 @@ function AssistantWidget() {
         }
     }
     return (
-        <div className="assistant-widget">
+        <aside className="assistant-widget">
             <button
                 type="button"
                 onClick={() => setIsOpen((prev) => !prev)}
-                className="btn btn-primary"
+                className="assistant-widget-toggle"
+                aria-expanded={isOpen}
+                aria-controls="assistant-widget-panel"
             >
-                {isOpen ? "Chiudi chat" : "GretAI Thun"}
+                {buttonLabel}
             </button>
 
             {isOpen && (
-                <div className="card mt-2 assistant-widget-panel">
-                    <div className="card-body p-2">
-                        <div className="assistant-widget-messages border rounded p-2 mb-2">
-                            {messages.map((message, index) => (
-                                <div key={index} className="mb-2">
-                                    <div className="small text-muted mb-1">
-                                        {message.role === "user" ? "Tu" : "GretAI Thun"}
-                                    </div>
+                <section id="assistant-widget-panel" className="assistant-widget-panel card mt-2">
+                    <header className="assistant-widget-header">
+                        <h2 className="assistant-widget-title">GretAI Thun</h2>
+                        <p className="assistant-widget-subtitle">Risposte rapide sul catalogo</p>
+                    </header>
 
-                                    {message.role === "user" ? (
-                                        <div>{message.text}</div>
-                                    ) : (
-                                        <div dangerouslySetInnerHTML={{ __html: message.html }} />
-                                    )}
-                                </div>
-                            ))}
-                        </div>
+                    <div className="assistant-widget-messages">
+                        {messages.map((message, index) => (
+                            <article key={index} className={"assistant-bubble " + (message.role === "user" ? "assistant-bubble-user" : "assistant-bubble-ai")}>
+                                <p className="assistant-bubble-label">{message.role === "user" ? "Tu" : "GretAI Thun"}</p>
+                                {message.role === "user" ? (
+                                    <p className="assistant-bubble-text">{message.text}</p>
+                                ) : (
+                                    <div className="assistant-bubble-text" dangerouslySetInnerHTML={{ __html: message.html }}></div>
+                                )}
+                            </article>
+                        ))}
+                    </div>
 
-                        <form onSubmit={handleSend}>
-                            <textarea
-                                className="form-control mb-2"
-                                rows={3}
-                                placeholder="Scrivi qui..."
-                                value={prompt}
-                                onChange={(event) => setPrompt(event.target.value)}
-                                disabled={loading}
-                            />
-                            <button type="submit" className="btn btn-sm btn-primary" disabled={loading}>
+                    <form onSubmit={handleSend} className="assistant-widget-form">
+                        <textarea
+                            className="assistant-widget-textarea"
+                            rows={3}
+                            placeholder="Scrivi qui la tua domanda..."
+                            value={prompt}
+                            onChange={(event) => setPrompt(event.target.value)}
+                            disabled={loading}
+                        />
+                        <div className="assistant-widget-actions">
+                            <button type="submit" className="assistant-widget-send" disabled={loading}>
                                 {loading ? "Invio..." : "Invia"}
                             </button>
-                        </form>
-
-                        {error ? <div className="text-danger small mt-2">{error}</div> : null}
-                    </div>
-                </div>
+                        </div>
+                        {error ? <p className="assistant-widget-error">{error}</p> : null}
+                    </form>
+                </section>
             )}
-        </div>
+        </aside>
     );
 }
 
