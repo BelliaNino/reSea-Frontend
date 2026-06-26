@@ -130,9 +130,8 @@ function Product() {
                                 </div>
                                 <div className="d-flex justify-content-center mb-4 flex-column">
                                     <div className="d-flex flex-column align-items-center">
-                                        <p className="mb-1">scegli la visualizzazione in:</p>
                                         <button onClick={() => setView(view === 'column' ? 'row' : 'column')} className="btn btn-pay">
-                                            {view === 'column' ? 'riga' : 'colonna'}
+                                            {view === 'column' ? <i class="bi bi-list-ul"></i> : <i class="bi bi-grid-3x3-gap"></i> }
                                         </button>
                                     </div>
                                 </div>
