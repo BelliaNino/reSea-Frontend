@@ -6,7 +6,7 @@ import {
   Navigate
 } from 'react-router-dom'
 
-import Structure from './Layout/Structure'
+import Structure from './layout/Structure'
 import Homepage from './pages/Hompage'
 import ProductDetails from './pages/ProductDetails.jsx'
 import NotFound from './pages/NotFound'
@@ -14,10 +14,11 @@ import Wishlist from './pages/Wishlist'
 import Product from './pages/Product'
 import Cart from './pages/Cart.jsx'
 import CheckOutPage from './pages/CheckOutPage.jsx'
-import ScrollToTop from './Components/ScrollToTop.jsx'
-import { CategoriesProvider } from './Context/CategoriesContext.jsx'
-import { AppProvider } from './Context/AppContext.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx'
+import { CategoriesProvider } from './context/CategoriesContext.jsx'
+import { AppProvider } from './context/AppContext.jsx';
 import AboutUs from './pages/AboutUs.jsx'
+import AssistantWidget from './Components/AssistantWidget.jsx'
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
                 <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>
+            <AssistantWidget/>
           </BrowserRouter>
         </AppProvider>
       </CategoriesProvider>

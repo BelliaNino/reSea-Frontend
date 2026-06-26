@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { useCategories } from "../Context/CategoriesContext";
-import ProductSidebar from "../components/ProductSidebar";
-import { priceFormatter } from "../services/reseaServices";
-import { useAppContext } from "../Context/AppContext";
+import { useCategories } from "../context/CategoriesContext.jsx";
+import ProductSidebar from "../components/ProductSidebar.jsx";
+import { priceFormatter, getFilterLabel, formatCategoryName } from "../services/reseaServices";
+import { useAppContext } from "../context/AppContext.jsx";
 
 function Product() {
     const { categories, categoriesLoading, categoriesError } = useCategories();
@@ -78,6 +78,7 @@ function Product() {
     if (loading) return <p className="p-4">Caricamento dei prodotti in corso...</p>;
     if (error) return <p className="p-4 text-danger">Qualcosa è andato storto: {error}</p>;
 
+
     {/*array di descrizioni casuali*/ }
     const descrizioniSostenibili = [
         "Un accessorio nato dal mare e progettato per la terra. Realizzato al 100% con plastica riciclata recuperata dagli oceani, unendo eco-responsabilità e design d'avanguardia.",
@@ -87,32 +88,48 @@ function Product() {
         "Qualità eccellente e zero sprechi. Un pezzo unico nato dalle operazioni di pulizia dei nostri mari, perfetto per chi cerca un look sofisticato, etico e consapevole."
     ];
 
+    const sidebarProps = {
+        searchInput, setSearchInput, applySearch, handleSearchKeyDown,
+        selectedCategory, handleCategoryChange, safeCategories,
+        categoriesLoading, categoriesError, minPriceInput, setMinPriceInput,
+        maxPriceInput, setMaxPriceInput, sortBy, handleSortChange,
+        limit, handleLimitChange, handlePriceFilters, clearAllFilters
+    };
+
+    const formattedCategory = formatCategoryName(selectedCategory);
+    const filterDescription = getFilterLabel(formattedCategory, appliedSearch, minPrice, maxPrice);
+
+
+
     return (
         <div className="container py-4">
-            <div className="d-flex gap-4 align-items-start">
+            <div className="d-flex flex-column flex-lg-row gap-4 align-items-start">
                 <div className="sidebarp">
-                    {/* sidebar */}
-                    <ProductSidebar
-                        searchInput={searchInput}
-                        setSearchInput={setSearchInput}
-                        applySearch={applySearch}
-                        handleSearchKeyDown={handleSearchKeyDown}
-                        selectedCategory={selectedCategory}
-                        handleCategoryChange={handleCategoryChange}
-                        safeCategories={safeCategories}
-                        categoriesLoading={categoriesLoading}
-                        categoriesError={categoriesError}
-                        minPriceInput={minPriceInput}
-                        setMinPriceInput={setMinPriceInput}
-                        maxPriceInput={maxPriceInput}
-                        setMaxPriceInput={setMaxPriceInput}
-                        sortBy={sortBy}
-                        handleSortChange={handleSortChange}
-                        limit={limit}
-                        handleLimitChange={handleLimitChange}
-                        handlePriceFilters={handlePriceFilters}
-                        clearAllFilters={clearAllFilters}
-                    />
+                    {/* BOTTONE MOBILE*/}
+                    <button
+                        className="btn btn-primary d-lg-none mb-4 w-100"
+                        type="button"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasFilters"
+                    >
+                        <i className="bi bi-funnel"></i> Filtri
+                    </button>
+
+                    {/*OFF-CANVAS MOBILE*/}
+                    <div className="offcanvas offcanvas-start d-lg-none" tabIndex="-1" id="offcanvasFilters">
+                        <div className="offcanvas-header">
+                            <h5 className="offcanvas-title">Filtri</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="offcanvas"></button>
+                        </div>
+                        <div className="offcanvas-body">
+                            <ProductSidebar {...sidebarProps} />
+                        </div>
+                    </div>
+
+                    {/* SIDEBAR FISSA (Solo Desktop*/}
+                    <div className="d-none d-lg-block">
+                        <ProductSidebar {...sidebarProps} />
+                    </div>
                 </div>
                 {/* prodotti */}
                 <div className="flex-grow-1">
@@ -126,6 +143,13 @@ function Product() {
                         <>
                             <div className="d-flex text-secondary justify-content-end ">
                                 <p>Prodotti trovati: {products.length}</p>
+
+                            <div className="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
+                                <h6 className="mb-0 text-muted">
+                                    Mostrati <span className="text-dark fw-bold">{products.length}</span> di <span className="text-dark fw-bold">{total}</span>
+                                    <span className="ms-1">{filterDescription}</span>
+                                </h6>
+
                             </div>
                             <div className="d-flex justify-content-center mb-4 flex-column">
                                 <div className="d-flex flex-column align-items-center">
@@ -173,8 +197,11 @@ function Product() {
                                                         {item.name}
                                                     </h6>
                                                     <div className="d-flex justify-content-between align-items-center">
-                                                        <p className={view === 'row' ? 'd-none' : 'card-text fw-bold mb-0 small'}>
-                                                            €{Number(item.price).toFixed(2)}
+
+                                           
+                                                      <p className={view === 'row' ? 'd-none' : 'card-text fw-bold mb-0 small'}>
+                                                            {priceFormatter(item.price)}
+
                                                         </p>
                                                         <div className={view === 'row' ? "w-100 d-flex justify-content-end gap-2" : ""}>
 
