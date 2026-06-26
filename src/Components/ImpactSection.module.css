@@ -1,8 +1,11 @@
 .impactSection {
-    background:
-        linear-gradient(135deg,
+    background: linear-gradient(135deg,
             #082f49,
-            #0f766e);
+            #0dcaf0af);
+}
+
+.textTitle {
+    color: white;
 }
 
 .impactCard {
@@ -12,7 +15,7 @@
 .impactNumber {
     font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 800;
-    color: #34d399;
+    color: #120733af;
     margin-bottom: .5rem;
 }
 

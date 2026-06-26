@@ -23,6 +23,7 @@ function Product() {
     const [searchInput, setSearchInput] = useState(appliedSearch);
     const [minPriceInput, setMinPriceInput] = useState(minPrice);
     const [maxPriceInput, setMaxPriceInput] = useState(maxPrice);
+    const [view, setView] = useState("column");
 
     useEffect(() => { setSearchInput(appliedSearch); }, [appliedSearch]);
     useEffect(() => {
@@ -77,6 +78,16 @@ function Product() {
     if (loading) return <p className="p-4">Caricamento dei prodotti in corso...</p>;
     if (error) return <p className="p-4 text-danger">Qualcosa è andato storto: {error}</p>;
 
+
+    {/*array di descrizioni casuali*/ }
+    const descrizioniSostenibili = [
+        "Un accessorio nato dal mare e progettato per la terra. Realizzato al 100% con plastica riciclata recuperata dagli oceani, unendo eco-responsabilità e design d'avanguardia.",
+        "Ogni pezzo di questa collezione contribuisce a rimuovere i rifiuti plastici dalle nostre coste. Leggero, resistente e pensato per chi protegge il pianeta con stile.",
+        "Unisciti al cambiamento con un design minimalista. Realizzato interamente dando una seconda vita ai materiali marini recuperati, garantendo massima durabilità e comfort.",
+        "Anima green e linee moderne. Questo prodotto trasforma l'inquinamento oceanico in un elemento unico di alta moda, riducendo drasticamente l'impatto ambientale.",
+        "Qualità eccellente e zero sprechi. Un pezzo unico nato dalle operazioni di pulizia dei nostri mari, perfetto per chi cerca un look sofisticato, etico e consapevole."
+    ];
+
     const sidebarProps = {
         searchInput, setSearchInput, applySearch, handleSearchKeyDown,
         selectedCategory, handleCategoryChange, safeCategories,
@@ -87,6 +98,7 @@ function Product() {
 
     const formattedCategory = formatCategoryName(selectedCategory);
     const filterDescription = getFilterLabel(formattedCategory, appliedSearch, minPrice, maxPrice);
+
 
 
     return (
@@ -129,13 +141,28 @@ function Product() {
                         </div>
                     ) : (
                         <>
+                            <div className="d-flex text-secondary justify-content-end ">
+                                <p>Prodotti trovati: {products.length}</p>
+
                             <div className="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
                                 <h6 className="mb-0 text-muted">
                                     Mostrati <span className="text-dark fw-bold">{products.length}</span> di <span className="text-dark fw-bold">{total}</span>
                                     <span className="ms-1">{filterDescription}</span>
                                 </h6>
+
                             </div>
-                            <div className="d-flex flex-wrap gap-3 justify-content-center">
+                            <div className="d-flex justify-content-center mb-4 flex-column">
+                                <div className="d-flex flex-column align-items-center">
+                                    <p className="mb-1">scegli la visualizzazione in:</p>
+                                    <button
+                                        onClick={() => setView(view === 'column' ? 'row' : 'column')}
+                                        className="btn btn-pay"
+                                    >
+                                        {view === 'column' ? 'riga' : 'colonna'}
+                                    </button>
+                                </div>
+                            </div>
+                            <div className={`d-flex flex-wrap gap-3 justify-content-center `}>
                                 {products.map((item) => {
                                     const inCart = cart.some(p => p.id === item.id);
                                     const inWishlist = wishlist.some(p => p.id === item.id);
@@ -143,28 +170,44 @@ function Product() {
 
                                         <Link
                                             to={"/products/" + item.slug}
-                                            className="text-decoration-none text-dark d-inline-block"
+                                            className="text-decoration-none text-dark"
+                                            style={{ width: view === 'column' ? '18rem' : '100%', display: 'inline-block' }}
                                             key={item.id}
                                         >
-                                            <div className="card card-product" style={{ cursor: "pointer", width: "18rem" }}>
+
+                                            <div
+                                                className={`card card-product w-100 ${view === 'column' ? 'list-column' : 'list-row'} ${view === 'column' ? '' : 'd-flex flex-column flex-md-row align-items-center p-3 gap-3 rounded-5'}`}
+                                                style={{ cursor: "pointer" }}
+                                            >
                                                 <img
                                                     src={item.image}
-                                                    className="card-img-top"
+                                                    className={view === 'column' ? 'card-img-top' : 'img-fluid w-25 w-md-25 img-thumbnail border-0 bg-transparent'}
                                                     alt={item.name}
                                                     loading="lazy"
                                                     decoding="async"
                                                 />
-                                                <div className="card-body p-2">
-                                                    <h6 className="card-title fw-bold mt-3 mb-2">{item.name}</h6>
+
+                                                <div className={`card-body ${view === 'column' ? 'p-2' : 'flex-grow-1 p-3'}`}>
+
+                                                    <p className={`card-text text-muted small mt-2 fs-4 fw-semibold ${view === 'column' ? 'd-none' : 'd-none d-md-block'}`}>
+                                                        {descrizioniSostenibili[item.id % descrizioniSostenibili.length]}
+                                                    </p>
+
+                                                    <h6 className={`card-title fw-bold mt-3 mb-2 ${view === 'column' ? '' : 'fs-3 mt-0'}`}>
+                                                        {item.name}
+                                                    </h6>
                                                     <div className="d-flex justify-content-between align-items-center">
-                                                        <p className="card-text fw-bold mb-0 small">
+
+                                           
+                                                      <p className={view === 'row' ? 'd-none' : 'card-text fw-bold mb-0 small'}>
                                                             {priceFormatter(item.price)}
+
                                                         </p>
-                                                        <div>
+                                                        <div className={view === 'row' ? "w-100 d-flex justify-content-end gap-2" : ""}>
 
                                                             <button
                                                                 type="button"
-                                                                className="btn rounded-circle"
+                                                                className={`btn rounded-circle ${view === 'row' ? 'btn-lg fs-4' : ''}`}
                                                                 onClick={(e) => {
                                                                     e.preventDefault();
                                                                     e.stopPropagation();
@@ -175,7 +218,7 @@ function Product() {
 
                                                             <button
                                                                 type="button"
-                                                                className="btn rounded-circle"
+                                                                className={`btn rounded-circle ${view === 'row' ? 'btn-lg fs-4' : ''}`}
                                                                 onClick={(e) => {
                                                                     e.preventDefault();
                                                                     e.stopPropagation();
@@ -184,7 +227,6 @@ function Product() {
                                                             >
                                                                 <i className={`bi ${inCart ? "bi-cart-fill" : "bi-cart"}`}></i>
                                                             </button>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -222,7 +264,7 @@ function Product() {
                         </>)}
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 

@@ -15,7 +15,7 @@ function CTASection() {
                     e al pianeta.
                 </p>
 
-                <Link to='/products' className="btn btn-success btn-lg">
+                <Link to='/products' className="btn btn-pay btn-lg">
                     Acquista ora
                 </Link>
 

@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import { useAppContext } from "../Context/AppContext";
 import { priceFormatter } from "../services/reseaServices";
+import { Link } from 'react-router-dom';
 
 function ProductDetails() {
 
@@ -51,6 +52,9 @@ function ProductDetails() {
         <div className="container py-5">
             <div className="row">
                 <div className="col-md-6 mb-4">
+                    <Link className="back-link" to="/products">
+                        ← Torna ai prodotti
+                    </Link>
                     <img
                         src={product.image}
                         alt={product.name}

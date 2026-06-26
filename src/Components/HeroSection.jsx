@@ -8,7 +8,7 @@ function HeroSection() {
                 <div className="row align-items-center min-vh-75">
 
                     <div className="col-lg-6">
-                        <span className="badge bg-success mb-3">
+                        <span className="badge btn-pay mb-3">
                             Sustainable Eyewear
                         </span>
 
@@ -24,7 +24,10 @@ function HeroSection() {
                             progettati per accompagnarti ogni giorno.
                         </p>
 
-                        <Link to="/products" className="btn btn-dark btn-lg mb-3">
+                        <Link
+                            to="/products"
+                            className="btn btn-pay btn-lg mb-3"
+                        >
                             Scopri la collezione
                         </Link>
                     </div>
