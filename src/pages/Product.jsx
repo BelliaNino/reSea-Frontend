@@ -43,7 +43,7 @@ function Product() {
         return "/products?" + params.toString();
     }, [selectedCategory, appliedSearch, minPrice, maxPrice, sortBy, page, limit]);
 
-    const { data, loading, isFetching, error, pagination } = useFetch(endpoint);
+    const { data, loading, error, pagination } = useFetch(endpoint);
     const products = Array.isArray(data) ? data : [];
     const total = pagination?.total ?? products.length;
     const totalPages = Math.max(1, pagination?.totalPages ?? 1);
@@ -75,11 +75,6 @@ function Product() {
         updateParams({ page: nextPage });
     };
 
-    if (loading) return <p className="p-4">Caricamento dei prodotti in corso...</p>;
-    if (error) return <p className="p-4 text-danger">Qualcosa è andato storto: {error}</p>;
-
-
-    {/*array di descrizioni casuali*/ }
     const descrizioniSostenibili = [
         "Un accessorio nato dal mare e progettato per la terra. Realizzato al 100% con plastica riciclata recuperata dagli oceani, unendo eco-responsabilità e design d'avanguardia.",
         "Ogni pezzo di questa collezione contribuisce a rimuovere i rifiuti plastici dalle nostre coste. Leggero, resistente e pensato per chi protegge il pianeta con stile.",
@@ -96,89 +91,65 @@ function Product() {
         limit, handleLimitChange, handlePriceFilters, clearAllFilters
     };
 
-    const formattedCategory = formatCategoryName(selectedCategory);
-    const filterDescription = getFilterLabel(formattedCategory, appliedSearch, minPrice, maxPrice);
+    const filterDescription = getFilterLabel(formatCategoryName(selectedCategory), appliedSearch, minPrice, maxPrice);
 
-
+    if (loading) return <p className="p-4">Caricamento dei prodotti in corso...</p>;
+    if (error) return <p className="p-4 text-danger">Qualcosa è andato storto: {error}</p>;
 
     return (
         <div className="container py-4">
             <div className="d-flex flex-column flex-lg-row gap-4 align-items-start">
                 <div className="sidebarp">
-                    {/* BOTTONE MOBILE*/}
-                    <button
-                        className="btn btn-primary d-lg-none mb-4 w-100"
-                        type="button"
-                        data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasFilters"
-                    >
+                    <button className="btn btn-primary d-lg-none mb-4 w-100" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilters">
                         <i className="bi bi-funnel"></i> Filtri
                     </button>
-
-                    {/*OFF-CANVAS MOBILE*/}
                     <div className="offcanvas offcanvas-start d-lg-none" tabIndex="-1" id="offcanvasFilters">
                         <div className="offcanvas-header">
                             <h5 className="offcanvas-title">Filtri</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="offcanvas"></button>
                         </div>
-                        <div className="offcanvas-body">
-                            <ProductSidebar {...sidebarProps} />
-                        </div>
+                        <div className="offcanvas-body"><ProductSidebar {...sidebarProps} /></div>
                     </div>
-
-                    {/* SIDEBAR FISSA (Solo Desktop*/}
-                    <div className="d-none d-lg-block">
-                        <ProductSidebar {...sidebarProps} />
-                    </div>
+                    <div className="d-none d-lg-block"><ProductSidebar {...sidebarProps} /></div>
                 </div>
-                {/* prodotti */}
+
                 <div className="flex-grow-1">
                     {products.length === 0 ? (
-
                         <div className="d-flex flex-column align-items-center justify-content-center py-5">
                             <i className="bi bi-sunglasses text-warning" style={{ fontSize: '4rem' }}></i>
                             <h4 className="mt-3 text-dark">Nessun prodotto trovato</h4>
                         </div>
                     ) : (
                         <>
-                            <div className="d-flex text-secondary justify-content-end ">
-                                <p>Prodotti trovati: {products.length}</p>
-
-                            <div className="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
-                                <h6 className="mb-0 text-muted">
-                                    Mostrati <span className="text-dark fw-bold">{products.length}</span> di <span className="text-dark fw-bold">{total}</span>
-                                    <span className="ms-1">{filterDescription}</span>
-                                </h6>
-
-                            </div>
-                            <div className="d-flex justify-content-center mb-4 flex-column">
-                                <div className="d-flex flex-column align-items-center">
-                                    <p className="mb-1">scegli la visualizzazione in:</p>
-                                    <button
-                                        onClick={() => setView(view === 'column' ? 'row' : 'column')}
-                                        className="btn btn-pay"
-                                    >
-                                        {view === 'column' ? 'riga' : 'colonna'}
-                                    </button>
+                            <div className="d-flex text-secondary justify-content-between">
+                                <div className="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
+                                    <h6 className="mb-0 text-muted">
+                                        Mostrati <span className="text-dark fw-bold">{products.length}</span> di <span className="text-dark fw-bold">{total}</span>
+                                        <span className="ms-1">{filterDescription}</span>
+                                    </h6>
+                                </div>
+                                <div className="d-flex justify-content-center mb-4 flex-column">
+                                    <div className="d-flex flex-column align-items-center">
+                                        <p className="mb-1">scegli la visualizzazione in:</p>
+                                        <button onClick={() => setView(view === 'column' ? 'row' : 'column')} className="btn btn-pay">
+                                            {view === 'column' ? 'riga' : 'colonna'}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                            <div className={`d-flex flex-wrap gap-3 justify-content-center `}>
+
+                            <div className={`d-flex flex-wrap gap-3 justify-content-center`}>
                                 {products.map((item) => {
                                     const inCart = cart.some(p => p.id === item.id);
                                     const inWishlist = wishlist.some(p => p.id === item.id);
                                     return (
-
                                         <Link
                                             to={"/products/" + item.slug}
                                             className="text-decoration-none text-dark"
                                             style={{ width: view === 'column' ? '18rem' : '100%', display: 'inline-block' }}
                                             key={item.id}
                                         >
-
-                                            <div
-                                                className={`card card-product w-100 ${view === 'column' ? 'list-column' : 'list-row'} ${view === 'column' ? '' : 'd-flex flex-column flex-md-row align-items-center p-3 gap-3 rounded-5'}`}
-                                                style={{ cursor: "pointer" }}
-                                            >
+                                            <div className={`card card-product w-100 ${view === 'column' ? 'list-column' : 'list-row'} ${view === 'column' ? '' : 'd-flex flex-column flex-md-row align-items-center p-3 gap-3 rounded-5'}`} style={{ cursor: "pointer" }}>
                                                 <img
                                                     src={item.image}
                                                     className={view === 'column' ? 'card-img-top' : 'img-fluid w-25 w-md-25 img-thumbnail border-0 bg-transparent'}
@@ -186,45 +157,22 @@ function Product() {
                                                     loading="lazy"
                                                     decoding="async"
                                                 />
-
                                                 <div className={`card-body ${view === 'column' ? 'p-2' : 'flex-grow-1 p-3'}`}>
-
                                                     <p className={`card-text text-muted small mt-2 fs-4 fw-semibold ${view === 'column' ? 'd-none' : 'd-none d-md-block'}`}>
                                                         {descrizioniSostenibili[item.id % descrizioniSostenibili.length]}
                                                     </p>
-
                                                     <h6 className={`card-title fw-bold mt-3 mb-2 ${view === 'column' ? '' : 'fs-3 mt-0'}`}>
                                                         {item.name}
                                                     </h6>
                                                     <div className="d-flex justify-content-between align-items-center">
-
-                                           
-                                                      <p className={view === 'row' ? 'd-none' : 'card-text fw-bold mb-0 small'}>
+                                                        <p className={view === 'row' ? 'd-none' : 'card-text fw-bold mb-0 small'}>
                                                             {priceFormatter(item.price)}
-
                                                         </p>
                                                         <div className={view === 'row' ? "w-100 d-flex justify-content-end gap-2" : ""}>
-
-                                                            <button
-                                                                type="button"
-                                                                className={`btn rounded-circle ${view === 'row' ? 'btn-lg fs-4' : ''}`}
-                                                                onClick={(e) => {
-                                                                    e.preventDefault();
-                                                                    e.stopPropagation();
-                                                                    addToWishlist(item);
-                                                                }}>
+                                                            <button type="button" className={`btn rounded-circle ${view === 'row' ? 'btn-lg fs-4' : ''}`} onClick={(e) => { e.preventDefault(); e.stopPropagation(); addToWishlist(item); }}>
                                                                 <i className={`bi ${inWishlist ? "bi-heart-fill" : "bi-heart"}`}></i>
                                                             </button>
-
-                                                            <button
-                                                                type="button"
-                                                                className={`btn rounded-circle ${view === 'row' ? 'btn-lg fs-4' : ''}`}
-                                                                onClick={(e) => {
-                                                                    e.preventDefault();
-                                                                    e.stopPropagation();
-                                                                    addHandler(item);
-                                                                }}
-                                                            >
+                                                            <button type="button" className={`btn rounded-circle ${view === 'row' ? 'btn-lg fs-4' : ''}`} onClick={(e) => { e.preventDefault(); e.stopPropagation(); addHandler(item); }}>
                                                                 <i className={`bi ${inCart ? "bi-cart-fill" : "bi-cart"}`}></i>
                                                             </button>
                                                         </div>
@@ -236,35 +184,29 @@ function Product() {
                                 })}
                             </div>
 
-                            {/* paginazione */}
                             <div className="d-flex flex-column align-items-center gap-2 mt-4">
                                 <nav>
                                     <ul className="pagination mb-0">
                                         <li className={"page-item" + (page <= 1 ? " disabled" : "")}>
-                                            <button className="page-link text-dark" onClick={() => goToPage(page - 1)} type="button">
-                                                Precedente
-                                            </button>
+                                            <button className="page-link text-dark" onClick={() => goToPage(page - 1)} type="button">Precedente</button>
                                         </li>
                                         {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
                                             <li key={p} className={"page-item" + (p === page ? " active" : "")}>
-                                                <button className="page-link text-dark" onClick={() => goToPage(p)} type="button">
-                                                    {p}
-                                                </button>
+                                                <button className="page-link text-dark" onClick={() => goToPage(p)} type="button">{p}</button>
                                             </li>
                                         ))}
                                         <li className={"page-item" + (page >= totalPages ? " disabled" : "")}>
-                                            <button className="page-link text-dark" onClick={() => goToPage(page + 1)} type="button">
-                                                Successiva
-                                            </button>
+                                            <button className="page-link text-dark" onClick={() => goToPage(page + 1)} type="button">Successiva</button>
                                         </li>
                                     </ul>
                                 </nav>
                                 <small className="text-muted">Pagina {page} di {totalPages}</small>
                             </div>
-                        </>)}
+                        </>
+                    )}
                 </div>
             </div>
-        </div >
+        </div>
     );
 }
 
