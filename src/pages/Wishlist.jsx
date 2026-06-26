@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from 'react-router-dom'
-import { useAppContext } from '../Context/AppContext';
+import { useAppContext } from '../context/AppContext';
 
 function Wishlist() {
     const { wishlist, addToWishlist, addHandler } = useAppContext();
