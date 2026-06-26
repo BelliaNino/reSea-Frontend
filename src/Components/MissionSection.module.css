@@ -6,11 +6,10 @@
 }
 
 .numberMarker {
-    font-size: 5rem;
+    font-size: 3rem;
     font-weight: 900;
-    color: rgba(74, 138, 124, 0.15);
-    margin-bottom: -20px;
-    pointer-events: none;
+    color: rgba(13, 202, 240, 0.981);
+    margin-bottom: 10px;
     line-height: 1;
 }
 
@@ -21,7 +20,7 @@
     background-color: #fff;
     padding: 40px;
     border-radius: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(13, 202, 240, 0.10);
 }
 
 .textSide h2 {
@@ -47,8 +46,8 @@
 
 .badge {
     display: inline-block;
-    background-color: #4a8a7c;
-    color: white;
+    background-color: #0dbff0af;
+    color: #fff;
     padding: 4px 12px;
     font-size: 0.75rem;
     font-weight: 700;
@@ -59,15 +58,7 @@
 }
 
 .highlight {
-    color: #4a8a7c;
-}
-
-.numberMarker {
-    font-size: 3rem;
-    font-weight: 900;
-    color: #cbd5e0;
-    margin-bottom: 10px;
-    line-height: 1;
+    color: #0dcaf0af;
 }
 
 .imageContainer {
@@ -75,7 +66,7 @@
     height: 400px;
     overflow: hidden;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(13, 202, 240, 0.15);
 }
 
 .imageContainer img {

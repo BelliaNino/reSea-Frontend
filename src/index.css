@@ -381,3 +381,33 @@ footer {
     min-height: 500px;
   }
 }
+
+/*card modalità row*/
+.list-row .product-card {
+  background-image: none !important;
+  background-color: #0073ff !important;
+}
+
+/* ==========================
+  Link "Torna indietro"
+   ========================== */
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  color: #0dcaf0af;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.back-link:hover {
+  color: #0492ae;
+  text-decoration: none;
+  transform: translateX(-4px);
+}

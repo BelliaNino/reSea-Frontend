@@ -4,14 +4,14 @@
 }
 
 .highlight {
-    color: #0f766e;
+    color: #0dcaf0af;
 }
 
 .heroImage {
     max-width: 100%;
     width: 500px;
     object-fit: contain;
-    filter: drop-shadow(0 25px 40px rgba(0, 0, 0, 0.15));
+    filter: drop-shadow(0 25px 40px rgba(13, 202, 240, 0.35));
     transition: transform .4s ease;
 }
 
