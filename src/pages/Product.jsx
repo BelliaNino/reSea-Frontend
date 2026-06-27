@@ -135,7 +135,7 @@ function Product() {
                                 <div className="d-flex justify-content-center mb-4 flex-column">
                                     <div className="d-flex flex-column align-items-center">
                                         <button onClick={() => setView(view === 'column' ? 'row' : 'column')} className="btn btn-pay">
-                                            {view === 'column' ? <i class="bi bi-list-ul"></i> : <i class="bi bi-grid-3x3-gap"></i>}
+                                            {view === 'column' ? <i className="bi bi-list-ul"></i> : <i className="bi bi-grid-3x3-gap"></i>}
                                         </button>
                                     </div>
                                 </div>
@@ -169,7 +169,7 @@ function Product() {
                                                         {item.name}
                                                     </h6>
                                                     <div className="d-flex justify-content-between align-items-center">
-                                                        <p className={view === 'row' ? 'd-none' : 'card-text fw-bold mb-0 small'}>
+                                                        <p className={`card-text fw-bold mb-0 ${view === 'row' ? 'fs-3' : 'small'}`}>
                                                             {priceFormatter(item.price)}
                                                         </p>
                                                         <div className={view === 'row' ? "w-100 d-flex justify-content-end gap-2" : ""}>
@@ -187,7 +187,7 @@ function Product() {
                                                                     <>
 
                                                                         <button
-                                                                        className="btn rounded-circle"
+                                                                            className="btn rounded-circle"
                                                                             onClick={(e) => { e.preventDefault(), e.stopPropagation(), countCart.quantity === 1 ? removeHandler(item.id) : updateQuantity(item.id, -1); }}
                                                                         >
                                                                             -
@@ -196,7 +196,7 @@ function Product() {
                                                                         <span>{countCart ? countCart.quantity : 0}</span>
 
                                                                         <button
-                                                                        className="btn rounded-circle"
+                                                                            className="btn rounded-circle"
                                                                             onClick={(e) => { e.preventDefault(), e.stopPropagation(), updateQuantity(item.id, +1); }}
                                                                         >
                                                                             +

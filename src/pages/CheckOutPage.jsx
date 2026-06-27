@@ -131,6 +131,11 @@ function CheckoutPage() {
     if (cartItems.length === 0) {
         return (
             <div className="container py-5">
+                <div className="mb-3">
+                    <Link to="/cart" className="text-decoration-none d-flex align-items-center">
+                        <i className="bi bi-arrow-left me-2"></i> Torna al carrello
+                    </Link>
+                </div>
                 <h1>Riepilogo</h1>
                 <p>Il tuo carrello è vuoto!</p>
             </div>
