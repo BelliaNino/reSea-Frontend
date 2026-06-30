@@ -72,7 +72,6 @@ function ProductCarouselSection({ title, products, loading, error }) {
     return (
         <section className="container py-5">
             <div className="d-flex justify-content-between align-items-center mb-3">
-              
                 <h2 className={`${styles.sectionTitle} mb-0`}>{title}</h2>
 
                 <div className="d-flex gap-2">
@@ -115,10 +114,8 @@ function ProductCarouselSection({ title, products, loading, error }) {
                                     />
 
                                     <div className="card-body">
-                                 
                                         <h6 className={`card-title ${styles.homeCardTitle}`}>{item.name}</h6>
                                         <p className={`card-text fw-bold mb-0 ${styles.homeCardPrice}`}>{priceFormatter(item.price)}</p>
-n
                                     </div>
                                 </div>
                             </Link>
