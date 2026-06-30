@@ -1,0 +1,118 @@
+.wishlistTitle {
+    text-align: center;
+    color: #0B5E7A;
+    font-weight: 700;
+    margin-bottom: 3rem;
+}
+
+.wishlistGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.wishlistCard {
+    width: 240px;
+    background: linear-gradient(180deg, #f8fdff 0%, #eefbfd 45%, #ffffff 100%);
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 170, 200, .15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+    transition: .35s ease;
+    position: relative;
+}
+
+.wishlistCard::before {
+    content: "";
+    display: block;
+    height: 6px;
+    background: linear-gradient(90deg,
+            #00b4d8,
+            #48cae4,
+            #90e0ef);
+}
+
+.wishlistCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 35px rgba(22, 166, 201, .25);
+}
+
+.wishlistImage {
+    position: relative;
+    overflow: hidden;
+}
+
+.wishlistImage img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: .5s;
+}
+
+.wishlistCard:hover .wishlistImage img {
+    transform: scale(1.08);
+}
+
+.wishlistBadge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #13A8C9;
+    color: white;
+    padding: .35rem .8rem;
+    border-radius: 30px;
+    font-size: .7rem;
+    font-weight: 600;
+}
+
+.wishlistBody {
+    padding: 1.2rem;
+    text-align: center;
+}
+
+.wishlistBody h6 {
+    color: #124559;
+    font-weight: 600;
+    min-height: 48px;
+}
+
+.wishlistPrice {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0AA7C7;
+    margin: 1rem 0;
+}
+
+.wishlistButtons {
+    display: flex;
+    gap: .75rem;
+}
+
+.wishlistCart {
+    flex: 1;
+    background: #13A8C9;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    transition: .3s;
+}
+
+.wishlistCart:hover {
+    background: #0B8EAA;
+    color: white;
+}
+
+.wishlistDelete {
+    width: 48px;
+    border-radius: 12px;
+    border: 1px solid #ff6b6b;
+    color: #ff6b6b;
+    background: white;
+    transition: .3s;
+}
+
+.wishlistDelete:hover {
+    background: #ff6b6b;
+    color: white;
+}
