@@ -18,8 +18,6 @@ function ProductCardGrid({
             <img
                 src={item.image}
                 alt={item.name}
-                loading="lazy"
-                decoding="async"
                 className="card-img-top img-fluid w-100 object-fit-cover"
             />
 

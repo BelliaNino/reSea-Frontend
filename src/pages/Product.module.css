@@ -67,12 +67,3 @@
     background-color: hsl(200, 70%, clamp(40%, 60% - (var(--index-desktop, 0) * 7%), 60%)) !important;
   }
 }
-
-@media (min-width: 768px) {
-  .line-clamp-2 {
-    display: block;
-    line-clamp: unset;
-    -webkit-line-clamp: unset;
-    overflow: visible;
-  }
-}
