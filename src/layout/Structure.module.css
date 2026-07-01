@@ -101,11 +101,35 @@
   color: #fff;
 }
 
+.toggleBtn {
+  position: relative;
+}
+
+.mobileMenuDot {
+  display: none;
+}
+
 /*==MENU MOBILE==*/
 @media (max-width: 991.98px) {
   .menuLinks {
     margin-left: 0 !important;
     margin-right: 0 !important;
+  }
+
+  .mobileMenuDot {
+    display: block;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #dc3545;
+    box-shadow: 0 0 0 2px #fff;
+  }
+
+  .toggleBtn[aria-expanded = "true"] .mobileMenuDot {
+    display: none;
   }
 }
 

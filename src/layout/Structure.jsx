@@ -73,7 +73,7 @@ function Structure() {
           </Link>
 
           <button
-            className="navbar-toggler"
+            className={`navbar-toggler ${styles.toggleBtn}`}
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navMenu"
@@ -82,6 +82,7 @@ function Structure() {
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon" />
+            {totalQuantity > 0 && <span className={styles.mobileMenuDot} aria-hidden="true"></span>}
           </button>
 
           <div className="collapse navbar-collapse" id="navMenu" ref={navMenuRef}>
