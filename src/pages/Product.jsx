@@ -163,6 +163,8 @@ function Product() {
                                     const countCart = cart.find(p => p.id === item.id)
                                     const inCart = cart.some(p => p.id === item.id);
                                     const inWishlist = wishlist.some(p => p.id === item.id);
+                                    const desktopIndex = Math.floor(index / 3);
+                                    const tabletIndex = Math.floor(index / 2);
 
                                     const commonProps = {
                                         item,
@@ -182,8 +184,8 @@ function Product() {
                                                 }`}
                                             style={{
                                                 "--index-mobile": index,
-                                                "--index-desktop": Math.floor(index / 3),
-                                                "--index-tablet": Math.floor(index / 2)
+                                                "--index-desktop": desktopIndex,
+                                                "--index-tablet": tabletIndex
                                             }}
                                         >
                                             {view === "column" ? (
