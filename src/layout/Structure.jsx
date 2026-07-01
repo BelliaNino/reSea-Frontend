@@ -17,6 +17,7 @@ function Structure() {
   }
 
   const endOfListRef = useRef(null);
+  const navMenuRef = useRef(null);
 
   const prevCartLength = useRef(cart.length);
 
@@ -28,6 +29,22 @@ function Structure() {
 
     prevCartLength.current = cart.length;
   }, [cart]);
+
+  useEffect(() => {
+    const el = navMenuRef.current;
+    if (!el) return;
+
+    const handleHide = () => el.classList.add('is-closing');
+    const handleHidden = () => el.classList.remove('is-closing');
+
+    el.addEventListener('hide.bs.collapse', handleHide);
+    el.addEventListener('hidden.bs.collapse', handleHidden);
+
+    return () => {
+      el.removeEventListener('hide.bs.collapse', handleHide);
+      el.removeEventListener('hidden.bs.collapse', handleHidden);
+    };
+  }, []);
 
   return (
     <>
@@ -50,7 +67,7 @@ function Structure() {
             <span className="navbar-toggler-icon" />
           </button>
 
-          <div className="collapse navbar-collapse" id="navMenu">
+          <div className="collapse navbar-collapse" id="navMenu" ref={navMenuRef}>
             <div className={`${styles.menuLinks} mx-auto w-100 d-flex justify-content-center`}>
               <ul className="navbar-nav d-flex flex-column flex-sm-row gap-3">
                 <li className="nav-item">
