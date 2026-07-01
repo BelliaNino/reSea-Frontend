@@ -17,6 +17,7 @@ function Structure() {
   }
 
   const endOfListRef = useRef(null);
+  const navMenuRef = useRef(null);
 
   const prevCartLength = useRef(cart.length);
 
@@ -28,6 +29,39 @@ function Structure() {
 
     prevCartLength.current = cart.length;
   }, [cart]);
+
+  useEffect(() => {
+    // Recuperiamo il riferimento al menu dal DOM tramite la ref
+    const el = navMenuRef.current;
+
+    // Controllo di sicurezza: se l'elemento non esiste, usciamo subito
+    if (!el) return;
+
+    // Questa è la nostra "mossa": quando Bootstrap sta per chiudere il menu,
+    // aggiungiamo la classe 'is-closing'. Questa classe avvia l'animazione lenta.
+    const handleHide = () => el.classList.add('is-closing');
+
+    // Questa è la "pulizia": una volta che il menu è sparito del tutto,
+    // togliamo la classe 'is-closing' così è pronto per quando lo riaprirai.
+    const handleHidden = () => el.classList.remove('is-closing');
+
+    // Qui diciamo al menu: "Ascolta cosa dice Bootstrap!"
+    // "Quando senti che Bootstrap sta iniziando a chiudere il menu ('hide'),
+    // esegui la funzione handleHide (che aggiunge la classe per l'animazione lenta)"
+    el.addEventListener('hide.bs.collapse', handleHide);
+
+    // "Quando senti che Bootstrap ha finito di chiudere il menu ('hidden'),
+    // esegui la funzione handleHidden (che pulisce la classe per il prossimo uso)"
+    el.addEventListener('hidden.bs.collapse', handleHidden);
+
+
+    // Se il componente scompare dalla pagina, smettiamo di ascoltare 
+    // (per evitare di consumare memoria inutilmente)
+    return () => {
+      el.removeEventListener('hide.bs.collapse', handleHide);
+      el.removeEventListener('hidden.bs.collapse', handleHidden);
+    };
+  }, []);
 
   return (
     <>
@@ -50,7 +84,7 @@ function Structure() {
             <span className="navbar-toggler-icon" />
           </button>
 
-          <div className="collapse navbar-collapse" id="navMenu">
+          <div className="collapse navbar-collapse" id="navMenu" ref={navMenuRef}>
             <div className={`${styles.menuLinks} mx-auto w-100 d-flex justify-content-center`}>
               <ul className="navbar-nav d-flex flex-column flex-sm-row gap-3">
                 <li className="nav-item">
@@ -68,7 +102,7 @@ function Structure() {
 
             {/* WISHLIST - agganciare wishlistItems dal context quando pronto */}
 
-            <div className="d-flex align-items-center gap-2">
+            <div className="d-flex justify-content-end mt-3 gap-2 ">
               <div className="position-relative">
                 <Link to="/wishlist" className={styles.navBtn}>
                   <i className="bi bi-heart-fill"></i>
