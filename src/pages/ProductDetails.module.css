@@ -1,5 +1,5 @@
 /*==LINK INDIETRO==*/
-.backLink {
+/*.backLink {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -17,4 +17,74 @@
   color: #0492ae;
   text-decoration: none;
   transform: translateX(-4px);
+}*/
+
+.imageWrapper {
+    background-color: #e9ecef;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
+
+.backLink {
+    color: #6c757d;
+    transition: color 0.2s;
+}
+
+.backLink:hover {
+    color: #000;
+}
+
+.categoryBadge {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    font-size: 0.75rem;
+}
+
+.ecoBox {
+    background-color: #e8f5e9;
+    border: 1px solid #c8e6c9;
+}
+
+.ecoIcon {
+    width: 48px;
+    height: 48px;
+    background-color: #c8e6c9;
+    color: #2e7d32;
+}
+
+.price {
+    color: #1a1a2e;
+}
+
+.addToCartBtn {
+    background-color: #0DCAF0;
+    color: #fff;
+    border: none;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.addToCartBtn:hover {
+    background-color: #0bb1d3e2;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.wishlistBtn {
+    width: 52px;
+    height: 52px;
+    border: 2px solid #dee2e6;
+    background: #fff;
+    color: #6c757d;
+    transition: all 0.2s;
+}
+
+.wishlistBtn:hover {
+    border-color: black;
+    color: #dc3545;
+}
+
+.wishlisted {
+    border-color: #dc3545 !important;
+    color: #dc3545 !important;
+    background-color: #fff5f5 !important;
+}
+
