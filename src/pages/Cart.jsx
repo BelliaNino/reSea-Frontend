@@ -33,9 +33,16 @@ function Cart() {
                             </div>
                             {/* Lista prodotti nel carrello */}
                             <CartList />
-                            <span className="fw-semibold fs-5 text-dark d-flex justify-content-end me-2">
-                                Totale: {priceFormatter(totale)}
-                            </span>
+                            <div className="d-flex justify-content-end me-2">
+
+                                <span className="fw-semibold fs-5 text-muted me-2">
+                                    Totale:
+                                </span>
+
+                                <span className="fw-bold fs-5 text-dark">
+                                    {priceFormatter(totale)}
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div className="w-100 d-flex align-items-center">
