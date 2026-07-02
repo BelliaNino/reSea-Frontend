@@ -3,14 +3,26 @@
     background-color: #FADEC0;
     color: #001f3f;
     border-radius: 15px;
+    padding: clamp(1rem, 3vw, 2rem);
 }
 
-.item {
-    font-weight: 500;
+.title {
+    font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2rem);
 }
 
-.total {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #001f3f;
+.totalRow {
+    font-size: clamp(1.1rem, 1rem + 0.6vw, 1.3rem);
+}
+
+.item,
+.list {
+    font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.1rem);
+}
+
+.subtotalRow {
+    font-size: clamp(0.9rem, 0.85rem + 0.3vw, 1rem);
+}
+
+.ivaNote {
+    font-size: clamp(0.8rem, 0.75rem + 0.2vw, 0.9rem);
 }
