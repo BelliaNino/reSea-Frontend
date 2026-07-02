@@ -57,7 +57,7 @@ function Wishlist() {
                                                     Aggiungi
                                                 </button>
                                             ) : (
-                                                <div className={`${styles.btnAddToCartGrid} w-100 d-flex rounded-pill justify-content-between align-items-center px-3 me-3 ${styles.gradientBtn}`}>
+                                                <div className={`${styles.btnAddToCartGrid} d-flex rounded-pill justify-content-between align-items-center px-3 ${styles.gradientBtn}`}>
                                                     <button
                                                         className="btn btn-sm text-white p-0 rounded-pill"
                                                         onClick={(e) => {

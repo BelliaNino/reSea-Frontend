@@ -27,10 +27,7 @@
     content: "";
     display: block;
     height: 6px;
-    background: linear-gradient(90deg,
-            #00b4d8,
-            #48cae4,
-            #90e0ef);
+    background: linear-gradient(90deg, #00b4d8, #48cae4, #90e0ef);
 }
 
 .wishlistCard:hover {
@@ -47,6 +44,7 @@
     width: 100%;
     height: 220px;
     object-fit: cover;
+    display: block;
     transition: .5s;
 }
 
@@ -86,46 +84,25 @@
 
 .wishlistButtons {
     display: flex;
-    gap: .75rem;
+    align-items: center;
     justify-content: center;
-}
-
-.wishlistCart {
-    flex: 1;
-    background: #13A8C9;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    transition: .3s;
-}
-
-.wishlistCart:hover {
-    background: #0B8EAA;
-    color: white;
-}
-
-.wishlistDelete {
-    width: 50px;
-    border-radius: 50%;
-    border: 1px solid #ff6b6b;
-    color: #ff6b6b;
-    background: white;
-    transition: .3s;
-}
-
-.wishlistDelete:hover {
-    background: #ff6b6b;
-    color: white;
+    gap: .75rem;
 }
 
 .btnAddToCartGrid {
     background: linear-gradient(90deg, #00b4d8, #48cae4);
     color: white;
     border: none;
-    border-radius: 12px;
+    border-radius: 50px;
     padding: .5rem 1rem;
     transition: .3s;
     cursor: pointer;
+    width: 140px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .btnAddToCartGrid:hover {
@@ -138,4 +115,23 @@
     color: white;
     border: none;
     font-weight: bold;
-} 
+}
+
+.wishlistDelete {
+    width: 38px;
+    height: 38px;
+    border-radius: 50px;
+    border: 1px solid #ff6b6b;
+    color: #ff6b6b;
+    background: white;
+    transition: .3s;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wishlistDelete:hover {
+    background: #ff6b6b;
+    color: white;
+}
