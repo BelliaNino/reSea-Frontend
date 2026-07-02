@@ -210,7 +210,6 @@ function Structure() {
 
       <footer className="custom-footer px-4 py-4 mt-auto border-top">
 
-        {/* Brand + Social: colonna su mobile/tablet, riga da desktop */}
         <div className="container-fluid d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
           <a className="navbar-brand d-flex align-items-center gap-2 text-decoration-none text-dark" href="/">
             <img className={styles.footerLogo} src={logo} alt="Logo BB" />
@@ -242,7 +241,6 @@ function Structure() {
           </div>
         </div>
 
-        {/* Link legali: riga centrata a tutta larghezza su ogni breakpoint */}
         <ul className="nav align-items-center gap-3 flex-wrap justify-content-center mt-3">
           <li>
             <Link to="/privacy" className="text-decoration-none text-dark fw-medium small px-2">
